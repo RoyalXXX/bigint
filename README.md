@@ -7,7 +7,8 @@
 - Supports arbitrarily large integers
 - Fractional (rational) number support
 - Minimalistic and easy to integrate
-- No external dependencies
+- No external dependencie
+- 43 functions
 ## Usage
 Simply include the provided files and start using big integers and big fractions effortlessly in your C++ projects.
 
