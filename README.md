@@ -86,6 +86,8 @@ int main()
     BigInt den = b.get_denominator(); // den = "7"
 }
 ```
+## Overloaded operators for basic operations
+Operators `+`, `-` (both binary and unary), `*`, `/`, `%`, and `^` are overloaded for convenience. However, alternative representations are also provided: `Add`, `Subtract`, `Minus`, `Multiply`, `Divide`, `Remainder`, and `Pow`.
 ## BigInt Functions
 ### Basic operations
 #### Add +
