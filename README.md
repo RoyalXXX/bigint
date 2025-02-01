@@ -232,23 +232,23 @@ std::string Approx(const BigFrac&)
 ```c++
 bool EqualQ(const BigFrac&, const BigFrac&)
 ```
-#### NotEqualQ
+#### NotEqualQ !=
 ```c++
 bool NotEqualQ(const BigFrac&, const BigFrac&)
 ```
-#### GreaterQ
+#### GreaterQ >
 ```c++
 bool GreaterQ(const BigFrac&, const BigFrac&)
 ```
-#### LessQ
+#### LessQ <
 ```c++
 bool LessQ(const BigFrac&, const BigFrac&)
 ```
-#### GreaterEqualQ
+#### GreaterEqualQ >=
 ```c++
 bool GreaterEqualQ(const BigFrac&, const BigFrac&)
 ```
-#### LessEqualQ
+#### LessEqualQ <=
 ```c++
 bool LessEqualQ(const BigFrac&, const BigFrac&)
 ```
