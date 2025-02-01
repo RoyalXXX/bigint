@@ -92,20 +92,6 @@ int main()
 ```c++
 BigInt Add(const BigInt& x, const BigInt& y)
 ```
-##### Example
-```c++
-#include <iostream>
-#include "bigint.h"
- 
-int main() 
-{
-    BigInt a("10");
-    BigInt b("5");
-    BigInt c = a + b;
-    std::cout << c << std::endl; // 15
-    std::cout << Add(a, b) << std::endl; // 15
-}
-```
 #### Subtract -
 ```c++
 BigInt Subtract(const BigInt&, const BigInt&)
