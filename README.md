@@ -1,4 +1,8 @@
 # bigint
+
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+![Static Badge](https://img.shields.io/badge/C%2B%2B-17-blue?)
+
 ## Simple C++ Library for Large Integers and Fractions
 
 **bigint** is a lightweight C++ library for working with large integers and fractions. It is designed with simplicity in mind, requiring only a single header and a single implementation file.
