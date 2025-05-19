@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <utility>
 #include <sstream>
+#include <stdexcept>
 
 #include "bigint.h"
 
@@ -43,8 +44,7 @@ BigInt::BigInt(const std::string& s)
     auto s_q = IntegerQ(value);
     if (s_q == 0)
     {
-        std::cerr << "ERROR: Not a number" << std::endl;
-        std::exit(EXIT_FAILURE);
+        throw std::invalid_argument("ERROR: Not a number");
     }
     if (s_q == -1)
     {
@@ -58,8 +58,7 @@ BigInt::BigInt(std::string&& s)
     auto s_q = IntegerQ(value);
     if (s_q == 0)
     {
-        std::cerr << "ERROR: Not a number" << std::endl;
-        std::exit(EXIT_FAILURE);
+        throw std::invalid_argument("ERROR: Not a number");
     }
     if (s_q == -1)
     {
@@ -74,8 +73,7 @@ BigInt& BigInt::operator=(const char* s)
     auto s_q = IntegerQ(value);
     if (s_q == 0)
     {
-        std::cerr << "ERROR: Not a number" << std::endl;
-        std::exit(EXIT_FAILURE);
+        throw std::invalid_argument("ERROR: Not a number");
     }
     if (s_q == -1)
     {
@@ -263,8 +261,7 @@ BigInt operator/(const BigInt& x, const BigInt& y)
 {
     if (y.value == "0")
     {
-        std::cerr << "ERROR: Division by zero" << std::endl;
-        std::exit(EXIT_FAILURE);
+        throw std::runtime_error("Division by zero");
     }
     if (x.value == "0")
         return ZERO;
@@ -319,8 +316,7 @@ BigInt operator%(const BigInt& x, const BigInt& y)
 {
     if (y.value == "0")
     {
-        std::cerr << "ERROR: Division by zero" << std::endl;
-        std::exit(EXIT_FAILURE);
+        throw std::runtime_error("Division by zero");
     }
     if (x.sign && y.sign)
         return Abs(x) % Abs(y);
@@ -359,13 +355,11 @@ BigInt operator^(const BigInt& x, const int y)
 {
     if (y < 0)
     {
-        std::cerr << "ERROR: Power is a negative integer" << std::endl;
-        std::exit(EXIT_FAILURE);
+        throw std::domain_error("Power is a negative integer");
     }
     if (x.value == "0" && y == 0)
     {
-        std::cerr << "ERROR: Indeterminate expression 0^0 encountered" << std::endl;
-        std::exit(EXIT_FAILURE);
+        throw std::domain_error("Indeterminate expression 0^0 encountered");
     }
     if (x.value == "0")
         return x;
@@ -515,8 +509,7 @@ BigInt Factorial(const int n)
 {
     if (n < 0)
     {
-        std::cerr << "ERROR: Factorial of a negative integer" << std::endl;
-        std::exit(EXIT_FAILURE);
+        throw std::domain_error("Factorial of a negative integer");
     }
     BigInt x{ONE};
     int c{0};
@@ -568,8 +561,7 @@ BigInt ISqrt(const BigInt& x)
 {
     if (x.sign)
     {
-        std::cerr << "ERROR: Integer square root of a negative integer" << std::endl;
-        std::exit(EXIT_FAILURE);
+        throw std::domain_error("Integer square root of a negative integer");
     }
     if (x.value == "0" || x.value == "1")
         return x;
@@ -586,8 +578,7 @@ BigInt Fibonacci(const int n)
 {
     if (n < 0)
     {
-        std::cerr << "ERROR: Fibonacci of a negative integer" << std::endl;
-        std::exit(EXIT_FAILURE);
+        throw std::domain_error("Fibonacci of a negative integer");
     }
     if (n == 0)
         return ZERO;
@@ -660,8 +651,7 @@ BigFrac::BigFrac(const BigInt& x, const BigInt& y)
 {
     if (denom.get_value() == "0")
     {
-        std::cerr << "ERROR: Division by zero" << std::endl;
-        std::exit(EXIT_FAILURE);
+        throw std::runtime_error("Division by zero");
     }
     Reduce(num, denom);
 }
@@ -740,8 +730,7 @@ BigFrac operator/(const BigFrac& x, const BigFrac& y)
 {
     if (y.num.get_value() == "0")
     {
-        std::cerr << "ERROR: Division by zero" << std::endl;
-        std::exit(EXIT_FAILURE);
+        throw std::runtime_error("Division by zero");
     }
     BigFrac z;
     z.num = x.num * y.denom;
@@ -755,13 +744,11 @@ BigFrac operator^(const BigFrac& x, const int y)
     {
         if (y == 0)
         {
-            std::cerr << "ERROR: Indeterminate expression 0^0 encountered" << std::endl;
-            std::exit(EXIT_FAILURE);
+            throw std::domain_error("Indeterminate expression 0^0 encountered");
         }
         if (y < 0)
         {
-            std::cerr << "ERROR: Division by zero" << std::endl;
-            std::exit(EXIT_FAILURE);
+            throw std::runtime_error("Division by zero");
         }
     }
     if (y == 0)
@@ -903,8 +890,7 @@ BigFrac Harmonic(const int n)
 {
     if (n < 0)
     {
-        std::cerr << "ERROR: Complex infinity" << std::endl;
-        std::exit(EXIT_FAILURE);
+        throw std::domain_error("Complex infinity");
     }
     if (n == 0)
         return F_ZERO;
